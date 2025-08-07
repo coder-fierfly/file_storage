@@ -4,6 +4,7 @@ import './App.css';
 
 import LoginPage from './pages/LoginPage';
 import ExplorerPage from './pages/ExplorerPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
     return (
@@ -11,7 +12,11 @@ function App() {
             <Routes>
                 <Route path="/" element={<Navigate to="/login" replace />} />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/explorer/*" element={<ExplorerPage />} />
+
+                {/* Вложенные маршруты под защитой */}
+                <Route element={<ProtectedRoute />}>
+                    <Route path="/explorer/*" element={<ExplorerPage />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     );
